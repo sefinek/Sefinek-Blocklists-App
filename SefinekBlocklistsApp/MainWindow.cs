@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using SefinekBlocklistsApp.Models;
 using SefinekBlocklistsApp.Scripts;
 
-namespace SefinekBlocklistsApp;
+namespace Sefinek_Blocklists_App;
 
 public sealed partial class MainWindow : Form
 {

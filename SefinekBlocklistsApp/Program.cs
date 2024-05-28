@@ -1,3 +1,4 @@
+using Sefinek_Blocklists_App;
 using SefinekBlocklistsApp.Properties;
 using SefinekBlocklistsApp.Scripts;
 

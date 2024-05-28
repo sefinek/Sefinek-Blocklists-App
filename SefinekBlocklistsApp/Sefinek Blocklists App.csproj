@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup Label="Globals">
+    <WebView2DispatchAdapterNamespace>SefinekBlocklistsApp</WebView2DispatchAdapterNamespace>
+  </PropertyGroup>
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -22,6 +26,7 @@
     <Company>Sefinek Inc.</Company>
     <AssemblyName>Sefinek Blocklists</AssemblyName>
     <NeutralLanguage>en</NeutralLanguage>
+    <RootNamespace>SefinekBlocklistsApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2365.46" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

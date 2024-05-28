@@ -64,7 +64,7 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <EntryPointProjectUniqueName>..\SefinekBlocklistsApp\SefinekBlocklistsApp.csproj</EntryPointProjectUniqueName>
+    <EntryPointProjectUniqueName>..\SefinekBlocklistsApp\Sefinek Blocklists App.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <AppxBundle>Always</AppxBundle>
@@ -161,6 +161,6 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SefinekBlocklistsApp\SefinekBlocklistsApp.csproj" />
+    <ProjectReference Include="..\SefinekBlocklistsApp\Sefinek Blocklists App.csproj" />
   </ItemGroup>
 </Project>
