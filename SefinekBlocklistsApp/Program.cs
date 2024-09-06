@@ -1,4 +1,5 @@
-using Sefinek_Blocklists_App;
+using System.Diagnostics;
+using System.Reflection;
 using SefinekBlocklistsApp.Properties;
 using SefinekBlocklistsApp.Scripts;
 
@@ -6,12 +7,15 @@ namespace SefinekBlocklistsApp;
 
 internal static class Program
 {
+	public static readonly string? AppFileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+
 	/// <summary>
 	///    The main entry point for the application.
 	/// </summary>
 	[STAThread]
 	private static void Main()
 	{
+		Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
 		ApplicationConfiguration.Initialize();
 
 		try

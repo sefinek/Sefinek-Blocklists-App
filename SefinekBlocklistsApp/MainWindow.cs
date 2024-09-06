@@ -3,28 +3,27 @@ using Newtonsoft.Json;
 using SefinekBlocklistsApp.Models;
 using SefinekBlocklistsApp.Scripts;
 
-namespace Sefinek_Blocklists_App;
+namespace SefinekBlocklistsApp;
 
 public sealed partial class MainWindow : Form
 {
-	private static readonly string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sefinek Blocklists");
+	private static readonly string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Sefinek Blocklists");
 	private static readonly string JsonFilePath = Path.Combine(AppData, "settings.json");
 	private static readonly string DefaultUrl = "https://sefinek.net/blocklist-generator";
 
 	public MainWindow()
 	{
 		InitializeComponent();
-
-		DoubleBuffered = true;
 	}
 
 	private async void MainWindow_Load(object sender, EventArgs e)
 	{
 		webView21.CoreWebView2InitializationCompleted += WebView_CoreWebView2InitializationCompleted;
 
-		CoreWebView2Environment webView2Environment = await CoreWebView2Environment.CreateAsync(null, AppData).ConfigureAwait(false);
-		await webView21.EnsureCoreWebView2Async(webView2Environment).ConfigureAwait(false);
+		CoreWebView2Environment webView2Environment = await CoreWebView2Environment.CreateAsync(null, AppData);
+		await webView21.EnsureCoreWebView2Async(webView2Environment);
 
+		webView21.CoreWebView2.Settings.UserAgent += $" SefinekBlocklists/{Program.AppFileVersion}";
 		webView21.NavigationCompleted += WebView_NavigationCompleted;
 	}
 

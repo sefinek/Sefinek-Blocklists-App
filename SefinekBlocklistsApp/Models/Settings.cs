@@ -1,6 +1,8 @@
+using Newtonsoft.Json;
+
 namespace SefinekBlocklistsApp.Models;
 
 public class Settings
 {
-	public string? CurrentUrl { get; set; }
+	[JsonProperty("currenturl")] public string? CurrentUrl { get; set; }
 }
