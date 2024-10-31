@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Globals">
-    <WebView2DispatchAdapterNamespace>SefinekBlocklistsApp</WebView2DispatchAdapterNamespace>
+    <WebView2DispatchAdapterNamespace>SefinekBlocklists</WebView2DispatchAdapterNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <StartupObject>SefinekBlocklistsApp.Program</StartupObject>
+    <StartupObject>SefinekBlocklists.Program</StartupObject>
     <Copyright>Copyright 2024 © by Sefinek. All Rights Reserved.</Copyright>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -26,7 +26,7 @@
     <Company>Sefinek Inc.</Company>
     <AssemblyName>Sefinek Blocklists</AssemblyName>
     <NeutralLanguage>en</NeutralLanguage>
-    <RootNamespace>SefinekBlocklistsApp</RootNamespace>
+    <RootNamespace>SefinekBlocklists</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace SefinekBlocklistsApp.Scripts;
+namespace SefinekBlocklists.Scripts;
 
 internal static class Utils
 {

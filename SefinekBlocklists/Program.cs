@@ -1,16 +1,16 @@
 using System.Diagnostics;
 using System.Reflection;
-using SefinekBlocklistsApp.Properties;
-using SefinekBlocklistsApp.Scripts;
+using SefinekBlocklists.Properties;
+using SefinekBlocklists.Scripts;
 
-namespace SefinekBlocklistsApp;
+namespace SefinekBlocklists;
 
 internal static class Program
 {
 	public static readonly string? AppFileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 
 	/// <summary>
-	///    The main entry point for the application.
+	///     The main entry point for the application.
 	/// </summary>
 	[STAThread]
 	private static void Main()

@@ -1,4 +1,4 @@
-namespace SefinekBlocklistsApp
+namespace SefinekBlocklists
 {
 	sealed partial class MainWindow
     {

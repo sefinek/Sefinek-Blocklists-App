@@ -1,9 +1,9 @@
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
-using SefinekBlocklistsApp.Models;
-using SefinekBlocklistsApp.Scripts;
+using SefinekBlocklists.Models;
+using SefinekBlocklists.Scripts;
 
-namespace SefinekBlocklistsApp;
+namespace SefinekBlocklists;
 
 public sealed partial class MainWindow : Form
 {

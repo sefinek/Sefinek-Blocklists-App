@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace SefinekBlocklistsApp.Models;
+namespace SefinekBlocklists.Models;
 
 public class Settings
 {
