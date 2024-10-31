@@ -14,7 +14,7 @@
     <Copyright>Copyright 2024 © by Sefinek. All Rights Reserved.</Copyright>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <RepositoryUrl>https://github.com/sefinek24/Sefinek-Blocklists-App</RepositoryUrl>
+    <RepositoryUrl>https://github.com/sefinek/Sefinek-Blocklists-App</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <FileVersion>1.0.2.0</FileVersion>
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
