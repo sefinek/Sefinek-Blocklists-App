@@ -1,12 +1,5 @@
 .idea
 .vs
-
-*.txt
-*.cache
 *.user
-*.pfx
-
-packages
-
 SefinekBlocklists/bin
 SefinekBlocklists/obj
