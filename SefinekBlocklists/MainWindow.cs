@@ -18,45 +18,35 @@ public sealed partial class MainWindow : Form
 
 	private async void MainWindow_Load(object sender, EventArgs e)
 	{
+		Text += $@" v{Program.AppFileVersion}";
+
 		webView21.CoreWebView2InitializationCompleted += WebView_CoreWebView2InitializationCompleted;
-
-		CoreWebView2Environment webView2Environment = await CoreWebView2Environment.CreateAsync(null, AppData);
-		await webView21.EnsureCoreWebView2Async(webView2Environment);
-
+		await webView21.EnsureCoreWebView2Async(await CoreWebView2Environment.CreateAsync(null, AppData));
 		webView21.CoreWebView2.Settings.UserAgent += $" SefinekBlocklists/{Program.AppFileVersion}";
 		webView21.NavigationCompleted += WebView_NavigationCompleted;
 	}
 
 	private void WebView_CoreWebView2InitializationCompleted(object? sender, CoreWebView2InitializationCompletedEventArgs e)
 	{
-		if (e.IsSuccess)
-			try
-			{
-				if (File.Exists(JsonFilePath))
-				{
-					string file = File.ReadAllText(JsonFilePath);
-					Settings? settings = JsonConvert.DeserializeObject<Settings>(file);
+		if (!e.IsSuccess)
+		{
+			Utils.ShowErrorMessage("Failed to initialize WebView2.");
+			return;
+		}
 
-					if (settings != null && !string.IsNullOrEmpty(settings.CurrentUrl))
-						webView21.Source = new Uri(settings.CurrentUrl);
-					else
-						webView21.Source = new Uri(DefaultUrl);
-				}
-				else
-				{
-					Settings defaultSettings = new() { CurrentUrl = DefaultUrl };
-					string defaultJson = JsonConvert.SerializeObject(defaultSettings, Formatting.Indented);
-					File.WriteAllText(JsonFilePath, defaultJson);
+		try
+		{
+			string url = File.Exists(JsonFilePath)
+				? JsonConvert.DeserializeObject<Settings>(File.ReadAllText(JsonFilePath))?.CurrentUrl ?? DefaultUrl
+				: DefaultUrl;
 
-					webView21.Source = new Uri(DefaultUrl);
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage($@"Error: {ex.Message}");
-			}
-		else
-			Utils.ShowErrorMessage(@"Failed to load WebView2.");
+			File.WriteAllText(JsonFilePath, JsonConvert.SerializeObject(new Settings { CurrentUrl = url }, Formatting.Indented));
+			webView21.Source = new Uri(url);
+		}
+		catch (Exception ex)
+		{
+			Utils.ShowErrorMessage($"An error occurred: {ex.Message}");
+		}
 	}
 
 	private void WebView_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
@@ -64,20 +54,18 @@ public sealed partial class MainWindow : Form
 		if (e.IsSuccess)
 			SaveCurrentUrlToJson(webView21.Source.ToString());
 		else
-			Utils.ShowErrorMessage(@"Failed to load the web page.");
+			Utils.ShowErrorMessage("Failed to load the webpage.");
 	}
 
 	private static void SaveCurrentUrlToJson(string url)
 	{
 		try
 		{
-			var urlObject = new { CurrentUrl = url };
-			string json = JsonConvert.SerializeObject(urlObject);
-			File.WriteAllText(JsonFilePath, json);
+			File.WriteAllText(JsonFilePath, JsonConvert.SerializeObject(new { CurrentUrl = url }));
 		}
 		catch (Exception ex)
 		{
-			Utils.ShowErrorMessage(@$"Error while saving current URL to JSON: {ex.Message}");
+			Utils.ShowErrorMessage($"Error while saving the current URL to JSON: {ex.Message}");
 		}
 	}
 }

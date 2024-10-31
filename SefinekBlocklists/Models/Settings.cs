@@ -4,5 +4,5 @@ namespace SefinekBlocklists.Models;
 
 public class Settings
 {
-	[JsonProperty("CurrentUrl")] public string? CurrentUrl { get; set; }
+	[JsonProperty(nameof(CurrentUrl))] public required string CurrentUrl { get; set; }
 }

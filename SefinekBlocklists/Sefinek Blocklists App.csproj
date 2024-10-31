@@ -6,9 +6,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
+    <UseWindowsForms>True</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>SefinekBlocklists.Program</StartupObject>
     <Copyright>Copyright 2024 © by Sefinek. All Rights Reserved.</Copyright>
@@ -16,17 +16,24 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <RepositoryUrl>https://github.com/sefinek/Sefinek-Blocklists-App</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>1.0.2.0</FileVersion>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Version>1.0.2.0</Version>
+    <FileVersion>1.0.3.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <Version>1.0.3.0</Version>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
     <Authors>Sefinek</Authors>
     <Company>Sefinek Inc.</Company>
     <AssemblyName>Sefinek Blocklists</AssemblyName>
     <NeutralLanguage>en</NeutralLanguage>
     <RootNamespace>SefinekBlocklists</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2739.15" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2849.39" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
