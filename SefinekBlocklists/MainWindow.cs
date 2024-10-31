@@ -44,10 +44,7 @@ public sealed partial class MainWindow : Form
 				}
 				else
 				{
-					Settings defaultSettings = new()
-					{
-						CurrentUrl = DefaultUrl
-					};
+					Settings defaultSettings = new() { CurrentUrl = DefaultUrl };
 					string defaultJson = JsonConvert.SerializeObject(defaultSettings, Formatting.Indented);
 					File.WriteAllText(JsonFilePath, defaultJson);
 
