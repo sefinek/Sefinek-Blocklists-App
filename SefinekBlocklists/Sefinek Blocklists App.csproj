@@ -13,10 +13,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <RepositoryUrl>https://github.com/sefinek/Sefinek-Blocklists-App</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>1.0.3.0</FileVersion>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <Version>1.0.4.0</Version>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-    <Version>1.0.3.0</Version>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
     <Authors>Sefinek</Authors>
     <Company>Sefinek Inc.</Company>

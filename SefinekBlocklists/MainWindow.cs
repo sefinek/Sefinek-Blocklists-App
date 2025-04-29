@@ -23,6 +23,10 @@ public sealed partial class MainWindow : Form
 		webView21.CoreWebView2InitializationCompleted += WebView_CoreWebView2InitializationCompleted;
 		await webView21.EnsureCoreWebView2Async(await CoreWebView2Environment.CreateAsync(null, AppData));
 		webView21.CoreWebView2.Settings.UserAgent += $" SefinekBlocklists/{Program.AppFileVersion}";
+		webView21.CoreWebView2.Settings.AreDevToolsEnabled = false;
+		webView21.CoreWebView2.Settings.IsStatusBarEnabled = false;
+		webView21.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+		webView21.CoreWebView2.Settings.IsPasswordAutosaveEnabled = false;
 		webView21.NavigationCompleted += WebView_NavigationCompleted;
 	}
 
