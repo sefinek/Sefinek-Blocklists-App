@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Globals">
-    <WebView2DispatchAdapterNamespace>SefinekBlocklists</WebView2DispatchAdapterNamespace>
-  </PropertyGroup>
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <UseWindowsForms>True</UseWindowsForms>
@@ -26,6 +22,7 @@
     <Company>Sefinek Inc.</Company>
     <AssemblyName>Sefinek Blocklists</AssemblyName>
     <NeutralLanguage>en</NeutralLanguage>
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
     <RootNamespace>SefinekBlocklists</RootNamespace>
   </PropertyGroup>
 
