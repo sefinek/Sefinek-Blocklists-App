@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SefinekBlocklists", "SefinekBlocklists\SefinekBlocklists.csproj", "{BE128C3B-F92D-416B-9B42-6940D444F8A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefinek Blocklists", "SefinekBlocklists\Sefinek Blocklists.csproj", "{BE128C3B-F92D-416B-9B42-6940D444F8A0}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WinPackagingProject", "WinPackagingProject\WinPackagingProject.wapproj", "{9F01D3E8-09F4-4E99-8F28-205B80F988C3}"
 EndProject

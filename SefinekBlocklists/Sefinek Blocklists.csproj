@@ -12,14 +12,13 @@
     <Authors>Sefinek</Authors>
     <Company>Sefinek Inc.</Company>
     <Copyright>© 2024–2025 Sefinek. All rights reserved.</Copyright>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/sefinek/Sefinek-Blocklists-App</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Platforms>x64;x86;ARM64</Platforms>
     <RuntimeIdentifiers>win-x64;win-x86;win-arm64</RuntimeIdentifiers>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>SefinekBlocklists.App</StartupObject>
+    <RootNamespace>SefinekBlocklists</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +31,10 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <WebView2DispatchAdapterNamespace></WebView2DispatchAdapterNamespace>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
