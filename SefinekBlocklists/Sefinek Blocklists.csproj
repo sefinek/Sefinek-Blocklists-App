@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
     <UseWindowsSDKTargetPlatform>true</UseWindowsSDKTargetPlatform>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
-    <Version>1.0.4.0</Version>
+    <Version>1.0.3.0</Version>
     <Authors>Sefinek</Authors>
     <Company>Sefinek Inc.</Company>
     <Copyright>© 2024–2025 Sefinek. All rights reserved.</Copyright>
