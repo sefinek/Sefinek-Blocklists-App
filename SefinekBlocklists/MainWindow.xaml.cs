@@ -1,5 +1,4 @@
 using System.IO;
-using System.Windows;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using SefinekBlocklists.Models;
@@ -7,7 +6,7 @@ using SefinekBlocklists.Scripts;
 
 namespace SefinekBlocklists;
 
-public sealed partial class MainWindow : Window
+public sealed partial class MainWindow
 {
 	private const string DefaultUrl = "https://sefinek.net/blocklist-generator";
 	private static readonly string AppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Sefinek Blocklists");
