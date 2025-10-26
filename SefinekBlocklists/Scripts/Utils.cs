@@ -20,6 +20,8 @@ internal static class Utils
 		}
 	}
 
-	public static void ShowErrorMessage(string message) =>
+	public static void ShowErrorMessage(string message)
+	{
 		MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+	}
 }
