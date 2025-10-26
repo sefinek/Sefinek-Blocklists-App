@@ -26,20 +26,17 @@ dotnet build "Blocklists by Sefinek.sln" -c Release -p:Platform=x64
 dotnet build "SefinekBlocklists/Sefinek Blocklists.csproj" -c Debug -p:Platform=x64
 ```
 
-### Clean build artifacts
-```bash
-dotnet clean "SefinekBlocklists/Sefinek Blocklists.csproj"
-```
-
 ### Running the application
 ```bash
 # Run from project directory
 dotnet run --project "SefinekBlocklists/Sefinek Blocklists.csproj"
 ```
 
-### Cleaning build artifacts
+### Clean build artifacts
 ```bash
 dotnet clean "Blocklists by Sefinek.sln"
+# Or clean just the main project
+dotnet clean "SefinekBlocklists/Sefinek Blocklists.csproj"
 ```
 
 ## Solution Structure
@@ -100,7 +97,9 @@ The WebView2 control is configured with the following security and UX settings (
 ## Dependencies
 
 - **Microsoft.Web.WebView2** (v1.0.3537.50): Embedded Chromium browser control
-- **Microsoft.Windows.SDK.BuildTools** (v10.0.26100.6901): Windows SDK for packaging project
+- **Microsoft.Windows.SDK.BuildTools** (v10.0.26100.6901): Windows SDK for packaging project (used by WinPackagingProject only)
+
+Note: The project previously used Newtonsoft.Json but has been migrated to use native INI file parsing via `Scripts/IniFile.cs`.
 
 ## Platform Support
 
@@ -124,3 +123,15 @@ The application uses INI format for configuration:
 [Settings]
 CurrentUrl=https://sefinek.net/blocklist-generator
 ```
+
+## Project Configuration Notes
+
+- **Target Framework**: .NET 9.0 (net9.0-windows10.0.19041.0)
+- **UI Framework**: WPF (Windows Presentation Foundation)
+- **Build Output**:
+  - `AppendRuntimeIdentifierToOutputPath=false`
+  - `AppendTargetFrameworkToOutputPath=false`
+  - Output goes directly to `bin/{Platform}/{Configuration}/`
+- **Assembly Name**: `SefinekBlocklists` (output: `SefinekBlocklists.dll`)
+- **Current Version**: 1.0.4.0
+- **Application Manifest**: Located at `Properties/app.manifest`
