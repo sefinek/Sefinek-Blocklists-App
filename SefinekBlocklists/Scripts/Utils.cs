@@ -6,12 +6,20 @@ namespace SefinekBlocklists.Scripts;
 
 internal static class Utils
 {
-	public static readonly string? AppFileVersion = FileVersionInfo
-		.GetVersionInfo(Assembly.GetExecutingAssembly().Location)
-		.FileVersion;
+	public static readonly string? AppFileVersion = GetAppVersion();
 
-	public static void ShowErrorMessage(string message)
+	private static string? GetAppVersion()
 	{
-		MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+		try
+		{
+			return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+		}
+		catch
+		{
+			return null;
+		}
 	}
+
+	public static void ShowErrorMessage(string message) =>
+		MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 }

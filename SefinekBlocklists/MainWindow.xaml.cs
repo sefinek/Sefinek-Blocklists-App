@@ -24,10 +24,10 @@ public sealed partial class MainWindow
 		webView.CoreWebView2InitializationCompleted += OnWebViewInitialized;
 		webView.NavigationCompleted += OnNavigationCompleted;
 
-		var environment = await CoreWebView2Environment.CreateAsync(null, AppDataDir);
-		await webView.EnsureCoreWebView2Async(environment);
+		var environment = await CoreWebView2Environment.CreateAsync(null, AppDataDir).ConfigureAwait(true);
+		await webView.EnsureCoreWebView2Async(environment).ConfigureAwait(true);
 
-		CoreWebView2Settings? settings = webView.CoreWebView2.Settings;
+		var settings = webView.CoreWebView2.Settings;
 		settings.UserAgent += $" SefinekBlocklists/{Utils.AppFileVersion}";
 		settings.AreDevToolsEnabled = false;
 		settings.IsStatusBarEnabled = false;
@@ -56,20 +56,7 @@ public sealed partial class MainWindow
 			Utils.ShowErrorMessage("Failed to load the webpage.");
 	}
 
-	private static string? LoadUrlFromSettings()
-	{
-		try
-		{
-			return IniFile.Read(SettingsPath, "Settings", "CurrentUrl");
-		}
-		catch
-		{
-			return null;
-		}
-	}
+	private static string? LoadUrlFromSettings() => IniFile.Read(SettingsPath, "Settings", "CurrentUrl");
 
-	private static void SaveUrlToSettings(string url)
-	{
-		IniFile.Write(SettingsPath, "Settings", "CurrentUrl", url);
-	}
+	private static void SaveUrlToSettings(string url) => IniFile.Write(SettingsPath, "Settings", "CurrentUrl", url);
 }

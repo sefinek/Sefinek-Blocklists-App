@@ -12,17 +12,15 @@ internal static class IniFile
 
 		try
 		{
-			var lines = File.ReadAllLines(filePath);
 			var inSection = false;
 
-			foreach (var line in lines)
+			foreach (var line in File.ReadLines(filePath))
 			{
 				var trimmed = line.Trim();
 
 				if (trimmed.StartsWith('[') && trimmed.EndsWith(']'))
 				{
-					var currentSection = trimmed[1..^1];
-					inSection = currentSection.Equals(section, StringComparison.OrdinalIgnoreCase);
+					inSection = trimmed[1..^1].Equals(section, StringComparison.OrdinalIgnoreCase);
 					continue;
 				}
 
@@ -30,10 +28,9 @@ internal static class IniFile
 
 				var separatorIndex = trimmed.IndexOf('=');
 				var currentKey = trimmed[..separatorIndex].Trim();
-				if (!currentKey.Equals(key, StringComparison.OrdinalIgnoreCase)) continue;
 
-				var value = trimmed[(separatorIndex + 1)..].Trim();
-				return value;
+				if (currentKey.Equals(key, StringComparison.OrdinalIgnoreCase))
+					return trimmed[(separatorIndex + 1)..].Trim();
 			}
 		}
 		catch
@@ -48,12 +45,10 @@ internal static class IniFile
 	{
 		try
 		{
-			List<string> lines = [];
+			List<string> lines = File.Exists(filePath) ? [..File.ReadAllLines(filePath)] : [];
 			var sectionFound = false;
 			var keyUpdated = false;
-
-			if (File.Exists(filePath))
-				lines.AddRange(File.ReadAllLines(filePath));
+			var sectionIndex = -1;
 
 			for (var i = 0; i < lines.Count; i++)
 			{
@@ -70,7 +65,12 @@ internal static class IniFile
 						break;
 					}
 
-					sectionFound = currentSection.Equals(section, StringComparison.OrdinalIgnoreCase);
+					if (currentSection.Equals(section, StringComparison.OrdinalIgnoreCase))
+					{
+						sectionFound = true;
+						sectionIndex = i;
+					}
+
 					continue;
 				}
 
@@ -98,23 +98,11 @@ internal static class IniFile
 			}
 			else if (!keyUpdated)
 			{
-				for (var i = 0; i < lines.Count; i++)
-				{
-					var trimmed = lines[i].Trim();
-					if (trimmed.StartsWith('[') && trimmed.EndsWith(']'))
-					{
-						var currentSection = trimmed[1..^1];
-						if (currentSection.Equals(section, StringComparison.OrdinalIgnoreCase))
-						{
-							var insertIndex = i + 1;
-							while (insertIndex < lines.Count && !lines[insertIndex].Trim().StartsWith('['))
-								insertIndex++;
+				var insertIndex = sectionIndex + 1;
+				while (insertIndex < lines.Count && !lines[insertIndex].Trim().StartsWith('['))
+					insertIndex++;
 
-							lines.Insert(insertIndex, $"{key}={value}");
-							break;
-						}
-					}
-				}
+				lines.Insert(insertIndex, $"{key}={value}");
 			}
 
 			File.WriteAllLines(filePath, lines, Encoding.UTF8);
