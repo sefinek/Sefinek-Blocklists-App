@@ -26,6 +26,11 @@ dotnet build "Blocklists by Sefinek.sln" -c Release -p:Platform=x64
 dotnet build "SefinekBlocklists/Sefinek Blocklists.csproj" -c Debug -p:Platform=x64
 ```
 
+### Clean build artifacts
+```bash
+dotnet clean "SefinekBlocklists/Sefinek Blocklists.csproj"
+```
+
 ### Running the application
 ```bash
 # Run from project directory
@@ -43,7 +48,7 @@ The solution consists of two projects:
 
 1. **SefinekBlocklists** (`SefinekBlocklists/Sefinek Blocklists.csproj`)
    - Main WPF application project
-   - .NET 8.0 Windows target framework
+   - .NET 9.0 Windows target framework (net9.0-windows10.0.19041.0)
    - Entry point: `SefinekBlocklists.App`
 
 2. **WinPackagingProject** (`WinPackagingProject/WinPackagingProject.wapproj`)

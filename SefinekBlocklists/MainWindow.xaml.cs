@@ -1,7 +1,5 @@
 using System.IO;
 using Microsoft.Web.WebView2.Core;
-using Newtonsoft.Json;
-using SefinekBlocklists.Models;
 using SefinekBlocklists.Scripts;
 
 namespace SefinekBlocklists;
@@ -10,7 +8,7 @@ public sealed partial class MainWindow
 {
 	private const string DefaultUrl = "https://sefinek.net/blocklist-generator";
 	private static readonly string AppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Sefinek Blocklists");
-	private static readonly string SettingsPath = Path.Combine(AppDataDir, "settings.json");
+	private static readonly string SettingsPath = Path.Combine(AppDataDir, "settings.ini");
 
 	public MainWindow()
 	{
@@ -26,7 +24,7 @@ public sealed partial class MainWindow
 		webView.CoreWebView2InitializationCompleted += OnWebViewInitialized;
 		webView.NavigationCompleted += OnNavigationCompleted;
 
-		CoreWebView2Environment? environment = await CoreWebView2Environment.CreateAsync(null, AppDataDir);
+		var environment = await CoreWebView2Environment.CreateAsync(null, AppDataDir);
 		await webView.EnsureCoreWebView2Async(environment);
 
 		CoreWebView2Settings? settings = webView.CoreWebView2.Settings;
@@ -45,7 +43,7 @@ public sealed partial class MainWindow
 			return;
 		}
 
-		string url = LoadUrlFromSettings() ?? DefaultUrl;
+		var url = LoadUrlFromSettings() ?? DefaultUrl;
 		SaveUrlToSettings(url);
 		webView.Source = new Uri(url);
 	}
@@ -60,13 +58,9 @@ public sealed partial class MainWindow
 
 	private static string? LoadUrlFromSettings()
 	{
-		if (!File.Exists(SettingsPath))
-			return null;
-
 		try
 		{
-			Settings? settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(SettingsPath));
-			return settings?.CurrentUrl;
+			return IniFile.Read(SettingsPath, "Settings", "CurrentUrl");
 		}
 		catch
 		{
@@ -76,14 +70,6 @@ public sealed partial class MainWindow
 
 	private static void SaveUrlToSettings(string url)
 	{
-		try
-		{
-			string json = JsonConvert.SerializeObject(new Settings { CurrentUrl = url }, Formatting.Indented);
-			File.WriteAllText(SettingsPath, json);
-		}
-		catch (Exception ex)
-		{
-			Utils.ShowErrorMessage($"Error saving URL to settings:\n{ex.Message}");
-		}
+		IniFile.Write(SettingsPath, "Settings", "CurrentUrl", url);
 	}
 }
