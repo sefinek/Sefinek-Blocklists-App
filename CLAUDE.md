@@ -60,7 +60,7 @@ The solution consists of two projects:
    - Creates WebView2 control with custom user agent
    - Loads last visited URL from settings (defaults to https://sefinek.net/blocklist-generator)
    - Persists current URL on successful navigation
-   - Settings stored in `%APPDATA%/Sefinek Blocklists/settings.json`
+   - Settings stored in `%APPDATA%/Sefinek Blocklists/settings.ini` (INI format)
 
 ### Key Components
 
@@ -68,15 +68,19 @@ The solution consists of two projects:
 - `InitializeWebView()`: Sets up WebView2 environment and applies security settings
 - `OnWebViewInitialized()`: Loads URL from settings or default
 - `OnNavigationCompleted()`: Persists current URL on successful navigation
-- `LoadUrlFromSettings()`: Deserializes settings from JSON
-- `SaveUrlToSettings()`: Serializes current URL to JSON settings file
+- `LoadUrlFromSettings()`: Reads current URL from INI settings file
+- `SaveUrlToSettings()`: Writes current URL to INI settings file
 
 **Models/Settings.cs** - Settings data model
-- Simple POCO with `CurrentUrl` property for JSON serialization
+- Simple POCO with `CurrentUrl` property
 
 **Scripts/Utils.cs** - Utility functions
 - `AppFileVersion`: Gets application version from assembly metadata
 - `ShowErrorMessage()`: Displays WPF error message boxes
+
+**Scripts/IniFile.cs** - INI file reader/writer
+- `Read()`: Reads a value from an INI file by section and key
+- `Write()`: Writes a value to an INI file, creating section/key if needed
 
 ### WebView2 Configuration
 
@@ -91,7 +95,6 @@ The WebView2 control is configured with the following security and UX settings (
 ## Dependencies
 
 - **Microsoft.Web.WebView2** (v1.0.3537.50): Embedded Chromium browser control
-- **Newtonsoft.Json** (v13.0.4): JSON serialization for settings
 - **Microsoft.Windows.SDK.BuildTools** (v10.0.26100.6901): Windows SDK for packaging project
 
 ## Platform Support
@@ -106,5 +109,13 @@ Runtime identifiers: `win-x64`, `win-x86`, `win-arm64`
 ## File Locations
 
 - **Application data**: `%APPDATA%/Sefinek Blocklists/`
-- **Settings file**: `%APPDATA%/Sefinek Blocklists/settings.json`
+- **Settings file**: `%APPDATA%/Sefinek Blocklists/settings.ini` (INI format with [Settings] section)
 - **WebView2 cache**: `%APPDATA%/Sefinek Blocklists/` (managed by CoreWebView2Environment)
+
+## Settings File Format
+
+The application uses INI format for configuration:
+```ini
+[Settings]
+CurrentUrl=https://sefinek.net/blocklist-generator
+```
