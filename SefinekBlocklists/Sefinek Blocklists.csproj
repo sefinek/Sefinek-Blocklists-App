@@ -20,7 +20,7 @@
 		<Authors>Sefinek</Authors>
 		<NeutralLanguage>en</NeutralLanguage>
 
-		<Version>1.0.4.0</Version>
+		<Version>1.0.5.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 
@@ -52,6 +52,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3650.58" />
 	</ItemGroup>
 </Project>
