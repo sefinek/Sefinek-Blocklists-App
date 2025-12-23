@@ -74,18 +74,15 @@ internal static class IniFile
 					continue;
 				}
 
-				if (sectionFound && trimmed.Contains('='))
-				{
-					var separatorIndex = trimmed.IndexOf('=');
-					var currentKey = trimmed[..separatorIndex].Trim();
+				if (!sectionFound || !trimmed.Contains('=')) continue;
 
-					if (currentKey.Equals(key, StringComparison.OrdinalIgnoreCase))
-					{
-						lines[i] = $"{key}={value}";
-						keyUpdated = true;
-						break;
-					}
-				}
+				var separatorIndex = trimmed.IndexOf('=');
+				var currentKey = trimmed[..separatorIndex].Trim();
+				if (!currentKey.Equals(key, StringComparison.OrdinalIgnoreCase)) continue;
+
+				lines[i] = $"{key}={value}";
+				keyUpdated = true;
+				break;
 			}
 
 			if (!sectionFound)
